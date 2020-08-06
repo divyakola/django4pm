@@ -1,0 +1,214 @@
+		CSS
+	       -------
+CSS stands Cascading Style Sheets
+
+CSS is a style sheet language,which is used to describeing the look and formating the webpages.
+
+CSS syntax:
+-----------
+
+selector{
+     property_1:value;
+     property_2:value;
+           ........
+     property_n:value;
+    }
+
+example:
+--------
+h1{
+   color:red;
+   text-align:center;
+  }
+
+
+types of selectors in CSS?
+--------------------------
+	mainly 3-types of selectors are available,they are
+
+	1).element selector
+
+	2).id selector
+
+	3).class selector
+
+
+how to implement the CSS?
+------------------------
+	we can implement CSS in 3-ways,they are
+
+1).inline css
+	by using style attribute in the body section of the htmlpage
+
+2).internal css
+	by using style tag in head section of the htmlpage
+
+3).external css
+	to create a seperate ".css" file load that css file into out html file
+
+
+example for inline css
+-----------------------
+	csex1.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1 style="color:red;text-align:center">welcome to css</h1>
+</body>
+</html>
+
+example for internal css
+------------------------
+	csex2.html
+	-----------
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1{
+   color:blue;
+   text-align:center;
+  }
+</style>   
+</head>
+<body>
+<h1>welcome to css</h1>
+</body>
+</html>
+
+example for external css
+------------------------
+	csex3.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"  href="base.css">
+</link>
+</head>
+<body>
+<h1>welcome to css</h1>
+</body>
+</html>
+
+	base.css
+	--------
+body{
+    background-color:powderblue;
+   }
+
+h1{
+   color:red;
+   text-align:center;
+  }
+
+
+example for css selectors:
+--------------------------
+
+	csex4.html
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"  href="base.css">
+</link>
+</head>
+<body>
+<h1>welcome to css</h1>
+<p id="para1">CSS stands Cascading Style Sheet and CSS is a Style Sheet language</p>
+<h2 class="center">welcome to html</h2>
+<p>HTML stands Hyper Text Markup Language and HTML is a Markup language</p>
+</body>
+</html>
+
+	base.css
+	--------
+body{
+    background-color:powderblue;
+   }
+
+h1{
+   color:red;
+   text-align:center;
+  }
+  
+#para1,p{
+   color:blue;
+   size:15px;
+   }
+
+.center{
+     text-align:center;
+     color:green;
+  }
+
+
+	csex5.css
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"  href="base.css">
+</link>
+</head>
+<body>
+<h1>welcome to css</h1>
+</body>
+</html>
+
+	base.css
+	--------
+body{
+    background-image:url("googleimage.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+   }
+
+h1{
+   text-align:center;
+   color:red;
+   background:powderblue;
+   font-size:50px;
+   margin:100px;
+   padding:50px;
+  }
+
+
+	csex6.html
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"  href="base.css">
+</link>
+</head>
+<body>
+<h1>welcome to css</h1>
+</body>
+</html>
+
+	base.css
+	---------
+body{
+    background-image:url("https://images.unsplash.com/photo-1593378026053-b64902ae6f00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+    background-repeat:no-repeat;
+    background-size:1000px;
+   }
+
+h1{
+   text-align:center;
+   color:red;
+   background:powderblue;
+   font-size:50px;
+   margin:100px;
+   padding:50px;
+  }
+   
+
+
+

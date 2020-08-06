@@ -1,0 +1,133 @@
+what is web application?
+------------------------
+	a web application is a server-side program,that utilizes web browsers and web technolgies to perform a task over the web.
+
+	now a days,we are implemented web applications based on 3-tier architecture.
+
+	fig: 3-tier architecture
+
+
+what are the requirements needed to develop an web applications?
+-------------------------------------------------------------
+	the following requirements are needed to develop an web applications,
+
+	1).Technologies
+	2).IDE's
+	3).Design Pattern
+	4).Runtime Environments
+
+Technologies:
+-------------
+	the technologies can be categorized into 3-types,they are
+
+	1).client-side technologies
+
+	2).server-side technologies
+
+	3).Database technologies
+
+client-side technologies:
+-------------------------
+	these technologies are used to build the web pages and to perform the client side validations.
+
+	the client side technologies are HTML,CSS,Javascript,bootstrap,
+jquery,angularjs,...
+
+	we can execute the client side technologies to required web browsers.
+
+	ex:Chrome,firefox,IE,safari,opera,...
+
+server-side technologies:
+-------------------------
+	these technologies are used to implement the business logics and to perform the server side validations.
+
+	the server side technologies are python,java,.net(c#,asp.net,..),
+ruby,php,....
+
+	we can execute the server side programs to required servers(middleware servers),those server are
+
+	apachetomcat,glasfish,WAS,IIS,DDS,Jboss,....
+
+database technologies:
+---------------------
+	these technologies are used to perform the database related logics(to perform CURD operations).
+
+	SQL is the most common database technology for  all databases.
+
+	we can run the database programs,to required database servers.
+
+	the database servers are Oracle,mysql,sql server,teradata,DB2,postgresql,..
+
+note:
+-----
+we can open any webpage,in that web page we are observing 3-things
+
+	1).structure		--> HTML
+
+	2).style		--> CSS
+
+	3).interactivity  	--> javascript
+
+			HTML
+		------------------
+HTML(Hyper Text Markup Language)
+
+HTML is a Markup Language,which is used to build the webpages,it provides basic structure of the web pages.
+
+HTML was developed by "Berners Lee" in the year of 1991 but officially released in to the public in the year of 1995.
+
+HTML language is contains tag's
+
+what is tag?
+------------
+	we can define any pre-defined word with in the angular brackets,is known as a tag.
+
+	ex: < text >  -->text means any predefined word in HTML
+
+types of tag's:
+---------------
+	tag's can be categorized into two types,they are
+
+	1).container/pair tags
+	
+	any tag which contains both opening and closeing tags,that tags is called pair tags
+
+		ex: <html>   -->opening tag
+		      ...
+                      ...
+                    </html>  --> closeing tag
+
+	2).empty/single tags
+	
+	any tag dont contains closeing tags,that tags are called single tags.
+
+		ex: <br>,<hr>
+
+
+note:
+-----
+the latest HTML version is HTML5
+
+HTML is case insensitive language(<html> or <HTML>)
+
+	if we want to write and execute the HTML programs to required editors(notepad,notepad++,editplus,..) and browsers(Chrome,Firefox,IE,safari,Opera,..)
+
+	we can save the HTML file .html or .htm extensions
+
+structure of the HTML:
+----------------------
+<!DOCTYPE html>
+<html>
+	<head>
+		-----
+		-----
+	</head>
+
+	<body>
+		-----
+		-----
+	</body>
+</html>		
+
+
+

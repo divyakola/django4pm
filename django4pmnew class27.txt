@@ -1,0 +1,175 @@
+working with pdf files?
+-----------------------
+step1:
+-----
+to create a project
+
+	django-admin startproject proj33
+
+step2:
+----
+goto project location,in that location we are createing an appllication.
+
+	cd proj33
+
+	python manage.py startapp app33
+
+step3:
+-----
+to install our application in settings.py file of the project.
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app33'
+]
+
+step4:
+-----
+to create a view in views.py file of the application
+
+	views.py
+	-------
+from django.shortcuts import render
+from reportlab.pdfgen import canvas  
+from django.http import HttpResponse  
+  
+def getpdf(request):  
+    response = HttpResponse(content_type='application/pdf')  
+    response['Content-Disposition'] = 'attachment; filename="demo.pdf"'  
+    p = canvas.Canvas(response)  
+    p.setFont("Times-Roman", 55)  
+    p.drawString(100,700,"Hello world.")  
+    p.showPage()  
+    p.save()  
+    return response  
+
+step5:
+-----
+to configure the url pattern for views in urls.py file
+
+	urls.py
+	--------
+from django.contrib import admin
+from django.urls import path
+from app33 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('mypdef/',views.getpdf)
+]
+
+
+step6:
+-----
+to apply the  migrate
+
+	python manage.py migrate
+
+step7:
+------
+to start the server
+
+	python manage.py runserver
+
+step8:
+------
+to send the request
+
+	http://127.0.0.1:8000/mypdef
+
+
+ex:
+----
+sending an emails?
+
+step1:
+-----
+django-admin startproject proj34
+
+step2:
+-----
+cd proj34
+
+python manage.py startapp app34
+
+step3:
+------
+to install our application into settings.py file
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app34'
+]
+
+step4:
+------
+to changes some setting in our email
+
+	to enable the allows low secure apps
+
+ 	https://myaccount.google.com/lesssecureapps?pli=1
+
+step5:
+-----
+to configure some email settings in settings.py file
+
+	settings.py
+	-----------
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_PORT = 587  
+EMAIL_HOST_USER = 'senderemailid'  
+EMAIL_HOST_PASSWORD ='senderemailidpassword'  
+
+step6:
+------
+to create a view in views.py file of the application
+
+	views.py
+	--------
+from django.http import HttpResponse  
+from proj34 import settings  
+from django.core.mail import send_mail    
+  
+def mail(request):  
+    subject = "Greetings"  
+    msg     = "Congratulations for your success"  
+    to      = "receiver emailid"  
+    res     = send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])  
+    if(res == 1):  
+        msg = "Mail Sent Successfuly"  
+    else:  
+        msg = "Mail could not sent"  
+    return HttpResponse(msg)  
+
+step7:
+-----
+to configure url patterns for views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app34 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('mymail/',views.mail)
+]
+
+step8:
+------
+to apply the migrate
+
+	python manage.py migrate
+
+step9:
+------
+to start the server
+
+	python manage.py runserver
+
+

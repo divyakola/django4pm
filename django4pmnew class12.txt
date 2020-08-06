@@ -1,0 +1,212 @@
+ex:
+----
+to create a project with multiple applications?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj5
+
+step2:
+-----
+goto project location and in that project location to create an application
+
+	cd proj5
+
+	python manage.py startapp wishesapp
+
+	python manage.py startapp timeapp
+
+step3:
+------
+to install our applications in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'wishesapp',
+    'timeapp'
+    
+]
+
+step4:
+-----
+to create a views in views.py file of that particular application.
+
+	wishesapp/views.py
+	------------------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def morning(request):
+    return HttpResponse("hello siva Good Morning")
+def afternoon(request):
+    return HttpResponse("hello siva Good Afternoon")
+def evening(request):
+    return HttpResponse("hello siva Good Evening")
+def night(request):
+    return HttpResponse("hello siva Good Night")
+
+
+	timeapp/views.py
+	----------------
+from django.shortcuts import render
+from django.http import HttpResponse
+from datetime import datetime
+# Create your views here.
+def dateandtime(request):
+    x=datetime.now()
+    return HttpResponse("the current system date and time is: "+str(x))
+
+
+step5:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from wishesapp import views
+from timeapp import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('mr/',views.morning),
+    path('af/',views.afternoon),
+    path('ge/',views.evening),
+    path('gn/',views.night),
+    path('dt/',views.dateandtime)
+]
+
+step6:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+AttributeError: module 'timeapp.views' has no attribute 'morning'
+
+note:
+----
+Django framework dont supporting module overloading,whenever we are importing multiple modules with same name,in that case django framework to recognize recent imported module only.
+
+	to overcome that problem,by using following ways
+
+scenario1:
+----------
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+import wishesapp.views as v1
+import timeapp.views as v2
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('mr/',v1.morning),
+    path('af/',v1.afternoon),
+    path('ge/',v1.evening),
+    path('gn/',v1.night),
+    path('dt/',v2.dateandtime)
+]
+
+scenario2:
+---------
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from wishesapp.views import morning,afternoon,evening,night
+from timeapp.views import dateandtime
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('mr/',morning),
+    path('af/',afternoon),
+    path('ge/',evening),
+    path('gn/',night),
+    path('dt/',dateandtime)
+]
+
+scenario3:
+----------
+includeing another url configurations
+	(to create seperate urls.py files in the application and to include that application urls.py file into project urls.py file)
+
+	wishesapp/urls.py
+	----------------- 
+from django.urls import path
+from . import views
+
+urlpatterns=[
+    path('mr/',views.morning),
+    path('af/',views.afternoon),
+    path('ge/',views.evening),
+    path('gn/',views.night)
+  ]
+
+
+
+	timeapp/urls.py
+	---------------
+from django.urls import path
+from . import views
+
+urlpatterns=[
+    path('dt/',views.dateandtime)
+    ]
+
+
+
+	proj5/urls.py
+	-------------
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wishes/',include('wishesapp.urls')),
+    path('times/',include('timeapp.urls'))
+    
+]
+
+step5:
+----
+to apply the migrate again
+
+step6:
+-------
+to start the server
+
+	python manage.py runserver
+
+step7:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/mr
+	http://127.0.0.1:8000/dt
+
+		(or)
+
+	http://127.0.0.1:8000/wishes/mr
+	http://127.0.0.1:8000/times/dt
+
+project structure:
+-------------------
+	proj5
+	   |--->wishesapp
+	   |       |--->views.py
+	   |       |--->urls.py
+           |--->timeapp
+	   |       |--->views.py
+	   |       |--->urls.py
+	   |--->proj5
+	   |       |--->settings.py
+	   |       |--->urls.py
+	   |--->manage.py
+
+
+
+

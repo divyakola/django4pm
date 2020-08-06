@@ -1,0 +1,141 @@
+ex21:
+---
+create a web page to display the images?
+	ex21.html
+	---------
+<!DOCTYPE html>
+<html>
+<body>
+<img src="pylogo1.jpg" height="100px" width="150">
+<img src="E:\siva\pylogo2.png" align="right" alt="myimage">
+<center><img src="pylogo1.jpg"></cenetr>
+</body>
+</html>
+
+ex22:
+----
+to create a hyperlinks for webpages?
+
+	ex22.html
+	---------
+<!DOCTYPE html>
+<html>
+<center>
+||<a href="https://www.facebook.com/">Facebook</a>||
+||<a href="https://www.google.com/">Google</a>||
+||<a href="https://sivapython.blogspot.com/">Mytutorila</a>||
+||<a href="sample.html">sample</a>||
+</center>
+</body>
+</html>
+
+	sample.html
+	-----------
+<!DOCTYPE html>
+<body bgcolor="red">
+<h1><center>Hello world</center></h1>
+</body>
+</html>
+
+ex23:
+-----
+	ex23.html
+	---------
+<!DOCTYPE html>
+<html>
+<center>
+||<a href="https://www.facebook.com/" target="blank">Facebook</a>||
+||<a href="https://www.google.com/" target="blank">Google</a>||
+||<a href="https://sivapython.blogspot.com/" target="blank">Mytutorila</a>||
+||<a href="sample.html" target="blank">sample</a>||
+</center>
+</body>
+</html>
+
+ex24:
+-----
+to create hyperlinks with images?
+
+	ex24.html
+	---------
+<!DOCTYPE html>
+<html>
+<a href="https://www.google.com/" ><img src="googleimage.png" width="200" height="200"></a>
+<a href="https://www.facebook.com/" target="blank"><img src="fbimage.jpg" width="200" 
+height="200"></a>
+</body>
+</html>
+
+ex25:
+-----
+create a webpage with table?
+
+	ex25.html
+	--------
+<!DOCTYPE html>
+<html>
+<body>
+<table>
+<tr><th>Eid</th><th>Ename</th><th>Esal</th></tr>
+<tr><td>101</td><td>siva</td><td>3000</td></tr>
+<tr><td>102</td><td>rama</td><td>4000</td></tr>
+<tr><td>103</td><td>krishna</td><td>2000</td></tr>
+</table>
+</body>
+</html>
+
+ex26:
+----
+	ex26.html
+	---------
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<table border="2">
+<tr><th>Eid</th><th>Ename</th><th>Esal</th></tr>
+<tr><td>101</td><td>siva</td><td>3000</td></tr>
+<tr><td>102</td><td>rama</td><td>4000</td></tr>
+<tr><td>103</td><td>krishna</td><td>2000</td></tr>
+</table>
+</center>
+</body>
+</html>
+
+ex27:
+-----
+	ex27.html
+	---------
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<table border="2" cellpadding="20" cellspacing="10">
+<tr><th>Eid</th><th>Ename</th><th>Esal</th></tr>
+<tr><td>101</td><td>siva</td><td>3000</td></tr>
+<tr><td>102</td><td>rama</td><td>4000</td></tr>
+<tr><td>103</td><td>krishna</td><td>2000</td></tr>
+</table>
+</center>
+</body>
+</html>
+
+ex28:
+----
+	ex28.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="yellow">
+<center>
+<table border="2" cellpadding="20" cellspacing="10" bgcolor="red">
+<tr bgcolor="blue"><th>Eid</th><th>Ename</th><th>Esal</th></tr>
+<tr><td>101</td><td>siva</td><td>3000</td></tr>
+<tr><td>102</td><td bgcolor="white">rama</td><td>4000</td></tr>
+<tr><td>103</td><td>krishna</td><td>2000</td></tr>
+</table>
+</center>
+</body>
+</html>
+
+

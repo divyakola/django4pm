@@ -1,0 +1,166 @@
+HTML forms
+----------
+ex29
+----
+to create form with input field?
+
+	ex29.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+Enter Your Name<br><br>
+<input type="text" name="n">
+</form>
+</body>
+</html>
+
+
+	ex30.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+<input type="text" placeholder="enter your name" name="n">
+</form>
+</body>
+</html>
+
+	ex31.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+<label>Enter your name:</label>
+<input type="text">
+</form>
+</body>
+</html>
+
+	ex32.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+Enter your name:
+<input type="text">
+</form>
+</body>
+</html>
+
+	ex33.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+Select your Gender:
+<input type="radio" name="gender">Male
+<input type="radio" name="gender">Female
+</form>
+</body>
+</html>
+
+	ex34.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+Select your Course?<br><br>
+<input type="checkbox" name="python">Python
+<input type="checkbox" name="django">Django
+<input type="checkbox" name="flask">Flask
+<input type="checkbox" name="html">Html
+</form>
+</body>
+</html>
+
+	ex35.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form>
+Select your country?
+<select>
+<option value="india">India</option>
+<option value="china">China</option>
+<option value="pakistan">Pakistan</option>
+<option value="japan">Japan</option>
+</select>
+</form>
+</body>
+</html>
+
+ex36:
+----
+to create simple sign-up form?
+
+
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<center>
+<table>
+<tr><th>Student Signup Form</th></tr>
+<tr><td></td></tr>
+<tr><td>
+Enter FirstName:<input type="text"></td></tr>
+<tr><td></td></tr>
+<tr><td>
+Enter LastName:<input type="text"></td></tr>
+<tr><td></td></tr>
+<tr><td>
+Enter Email:<input type="email"></td></tr>
+<tr><td></td></tr>
+<tr><td>
+Enter UserName:<input type="text"></td></tr>
+<tr><td></td></tr>
+<tr><td>
+Enter Password:<input type="password"></td></tr>
+<tr><td></td></tr>
+<tr><td>
+Select your Gender:<input type="radio" name="gender">Male
+<input type="radio" name="gender">Female</td></tr>
+<tr><td></td></tr>
+<tr><td>
+select your course:<input type="checkbox" name="python">Python
+<input type="checkbox" name="django">Django
+<input type="checkbox" name="flask">Flask
+<input type="checkbox" name="html">Html</td></tr>
+<tr><td></td></tr>
+<tr><td>
+select your country: 
+<select>
+<option value="india">India</option>
+<option value="china">China</option>
+<option value="pakistan">Pakistan</option>
+<option value="japan">Japan</option>
+<option value="america">America</option>
+</select>
+</td></tr>
+<tr><td></td></tr>
+<tr><td>
+Enter your mobile number:
+<select>
+<option value="india">91</option>
+<option value="china">90</option>
+<option value="pakistan">93</option>
+<option value="japan">92</option>
+<option value="america">55</option>
+</select>
+<input type="phonenumber">
+</td></tr>
+<tr><td></td></tr>
+<tr><td>
+<input type="submit" value="submit">
+</form>
+</table>
+</center>
+</body>
+</html>

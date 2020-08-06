@@ -1,0 +1,397 @@
+ex:
+----
+create a project to implement classbased views to perform the addition of two numbers by using post() and get()?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj13
+
+step2:
+-----
+goto project location and to create an application in that project location.
+
+	cd proj13
+
+	python manage.py startapp app13
+
+step3:
+------
+to instal our application in settings.py file of the project.
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app13'
+]
+
+step4:
+-----
+to create a templates and to set the path for our tempolates in settings.py file of the project.
+
+	settings.py
+	----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+step5:
+------
+to create a views in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+from django.views.generic import View
+from django.http import HttpResponse
+# Create your views here.
+class ginsert(View):
+    def get(self,request):
+        return render(request,'ginput.html')
+class pinsert(View):
+    def get(self,request):
+        return render(request,'pinput.html')
+
+class addition(View):
+    def get(self,request):
+        a=int(request.GET['fn'])
+        b=int(request.GET['sn'])
+        return HttpResponse("The sum is: "+str(a+b))
+    def post(self,request):
+        a=int(request.POST['fn'])
+        b=int(request.POST['sn'])
+        return HttpResponse("The sum is: "+str(a+b))
+        
+
+	ginput.html
+	-----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="cyan">
+<form action='add'>
+Enter FirstNumber: <input type="text" name="fn"><br><br>
+Enter SecondNumber: <input type="text" name="sn"><br><br>
+<input type="submit" value="ADD">
+</form>
+</body>
+</html>
+
+	pinput.html
+	-----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<form action='add' action="post">
+{% csrf_token %}
+Enter FirstNumber: <input type="text" name="fn"><br><br>
+Enter SecondNumber: <input type="text" name="sn"><br><br>
+<input type="submit" value="ADD">
+</form>
+</body>
+</html>
+
+step6:
+------
+	to configure the urls patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url
+from app13.views import ginsert,pinsert,addition 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('gin/',ginsert.as_view()),
+    path('pin/',pinsert.as_view()),
+    url(r'add',addition.as_view())
+]
+
+step7:
+------
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+------
+to start the server
+
+	python manage.py runserver
+
+step9:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/gin
+
+	http://127.0.0.1:8000/pin
+
+project structure:
+-------------------
+	proj13
+	   |--->app113
+           |      |--->views.py
+	   |--->proj13
+           |      |--->urls.py
+	   |      |--->settings.py
+           |--->templates
+	   |      |--->ginput.html
+	   |      |--->pinput.html
+           |--->manage.py
+
+
+ex:
+---
+create project to implement both function based views and classbased views?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj14
+
+step2:
+-----
+goto the project location and create an application in that project location.
+
+	cd proj14
+
+	python manage.py startapp app14
+
+step3:
+-----
+	to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app14'
+]
+
+step4:
+------
+	to create a templates and to set the path for our templates in settings.py file of the project.
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+step5:
+------
+to create a both function based views and class based views in views.py file of the application.
+
+	views.py
+	---------
+from django.shortcuts import render
+from django.views.generic import View
+# Create your views here.
+def welcome(request):
+    return render(request,'base.html')
+
+class sample(View):
+    def get(self,request):
+        return render(request,"hello.html")
+
+
+	base.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="cyan">
+<h1>welcome to Djangoworld</h1>
+</body>
+</html>
+
+	hello.html
+	-----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<h1>Hello siva krishna Good evening</h1>
+</body>
+</html>
+
+step6:
+------
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	--------
+from django.contrib import admin
+from django.urls import path
+from app14.views import welcome,sample
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',welcome),
+    path('wishes/',sample.as_view())
+]
+
+step7:
+------
+to apply the migrate
+	
+	python manage.py migrate
+
+step8:
+-----
+to run the server
+	
+	python manage.py runserver
+
+step9:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/wel
+
+	http://127.0.0.1:8000/wishes
+
+project structure
+-----------------
+	proj14
+	   |--->app14
+	   |      |--->views.py
+           |--->proj14
+	   |      |--->urls.py
+	   |      |--->settings.py
+	   |--->templates
+	   |      |--->base.html
+	   |      |--->hello.html
+	   |--->manage.py
+
+
+MIME:
+----
+	MIME(Multipurpose Internent Mail Extension)
+
+Generally in client-server programming, the server is going to be sending the some information from server-side to browser side, at that time server is going to be sending the data based on the MIME type.
+
+MIME type is nothing but representation of data.
+
+Depends on MIME type, the data is displayed on the browser.
+
+In django framework we can specify the MIME type to the content_type heder of http protocol at the time of creating HttpResponse class object.
+
+Syntax:
+	HttpResponse(data,content_type= "mimetype")
+
+The "content_type " response header is known as MIME type.
+
+Server sends MIME type to client to let them know the which kind of data its sending.
+
+The default MIME type of the content_type header of http protocol is text/html.
+
+
+	NAME			  MIME Type
+	-----------------------------------
+1.Adobe portable document format   1. Application/pdf
+2. Hyper text markup language	   2. Text/html
+3. Extensible markup language	   3.Application/xml
+4.Microsoft word		   4. Application/msword
+5. images		           5.images/jpg, images/png
+6. text				   6. text/plain
+
+
+ex:
+---
+step1:
+-----
+to create a project
+
+	django-admin startproject proj15
+
+step2:
+-----
+goto project location and to create an application in that project location
+
+	cd proj15
+
+	python manage.py startapp app15
+
+step3:
+-----
+to install our application in settings.py file of the project.
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+   
+    'app15'
+]
+
+step4:
+----
+to create a view in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+data='''<html><body><table>
+<tr><th>Eid</th><th>Ename</th><th>Esal</th></tr>
+<tr><td>101</td><td>siva</td><td>3000</td></tr>
+<tr><td>102</td><td>rama</td><td>2000</td></tr>
+<tr><td>103</td><td>krishna</td><td>2500</td></tr>
+</tgable></body></html>'''
+
+def htmlview(request):
+    return HttpResponse(data,content_type="text/html")
+
+def xmlview(request):
+    return HttpResponse(data,content_type="application/xml")
+    
+
+step5:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	--------
+from django.contrib import admin
+from django.urls import path
+from app15 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('html/',views.htmlview),
+    path('xml/',views.xmlview)
+]
+
+step6:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step7:
+-----
+to start the server
+	
+	python manage.py runserver
+
+step8:
+-----
+to send the request to the server
+
+	http://127.0.0.1:8000/html
+
+	http://127.0.0.1:8000/xml
+
+
+
+
+
+
+

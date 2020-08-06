@@ -1,0 +1,465 @@
+			Model
+			------
+what is model?
+--------------
+	a model is a python class,which is used to representing the database related logics.
+
+	we can define any class as a model class,our class is Extending by Model class of models module.
+
+	class name as a model name,in database terminalogy a model represent as a one table in specified database,model name as a table name.
+
+	we can implement the models with in the models.py file of the application.
+
+	in our model class attributes act as a columns in our database table.
+
+	at the time of defineing a attributes in model class,we need to specify the type of that attribute,size of that attribute and specify the constraints of that attribute.
+
+	models module provides some attribute types,sizes and constraints.
+
+
+syntax:
+------
+from django.db import models
+class classname(models.Model):
+	attr1=models.modelfieldtype(size,constraint)
+	attr2=models.modelfieldtype(size,constraint)
+	......
+	......
+
+example:
+-------
+from django.db import models
+class emp(models.Model):
+	eid=models.IntegerField(primary_key=True)
+	ename=models.CharField(max_length=30)
+	sal=models.DecimalField(max_digits=6,decimal_place=2)
+
+
+note:
+----
+at the time creating a model,we dont specify any primary key attribute,by default django framework internally it will be added one primary key attribute,that is called pk/id.
+
+model field types:
+------------------
+	Django provides model field types to store, different types of data,    They are:
+
+1.CharField
+	1. This field used for storing a small to medium 
+	   sized strings.
+        2. It act as a base for other string based fields.
+	3. It does not provide any validations.
+2. SlugField
+	1. A CharField to store Slug.
+	2. It only accepts alphabets,numbers,underscores  and  hyphons.
+	3. It provides validations.
+3. DateField
+	1. It is used to store date.
+	2. It is corresponding to pythons datetime.date 		   	   instance.
+	3. It doesnot inherit from CharField.
+	4. It provides validations.
+4. DateTimeField
+	1. This is used to store date and time.
+	2. It is corressponding to pythons          			              datetime.datetime instance.
+	3. It does not inherit from CharField.
+        4. It provides validations.
+
+5. EmailField
+	1. It is a CharField to store Email address.
+	2. It verify wheather Email is valid (or) not.
+6. URLField
+	1. It is a CharField used to store URL.
+	2. It provides validations.
+	3. It checks wheather the given URl is valid or not valid.
+7. TextField
+	1. It is used to large amount of text.
+	2. This field does not provide any validation.
+8. BooleanField
+	1. It is used to store True (or) False.
+	2. To check wheather the given value is Boolean (or) not.
+9. IntegerField
+	1. It is used to store integer values.
+	2. To check wheather the given value is number or not.
+10. DecimalField
+	1.It is use to store decimal number.
+11. ForeignKey
+	1. It is used to define one-to-many relationships.
+12. ManyToManyField
+	1. It is used to define many-to-many relationships.		       
+13. OneToOneField
+	1. It is used to define one-to-one relationships.								
+
+	
+Field options
+-------------
+Each field takes a certain set of field-specific arguments (documented in the model field reference). 
+
+	max_length
+
+	null
+		If True, Django will store empty values as 		        		NULL in the database. Default is False.
+
+	blank
+		If True, the field is allowed to be blank. 		        		Default is False.
+
+	default
+		The default value for the field. 
+
+	primary_key
+		If True, this field is the primary key for the 	model.
+
+Database connections:
+---------------------
+	We are connecting the particular database, we are changing the database connections in the settings.py 	file.
+
+	By default, the django framework connect the sqlite3 database.
+
+SQLite3:-
+---------
+DATABASES= {
+	'default' : {
+		'ENGINE' : 'django.db.backends.sqlite3',
+		'NAME' : os.path.join(BASE_DIR,'db.sqlite3'),
+	}
+}
+
+
+MYSQL:-
+-------
+DATABASES= {
+	'default' : {
+		'ENGINE' : 'django.db.backends.mysql',
+		'NAME' : 'database_name',
+		'USER' : 'database_user',
+		'PASSWORD' : 'database_pass',
+		'HOST' : '127.0.0.1',
+		'PORT' : '3306',
+	}
+}
+
+
+Oracle:-
+---------
+DATABASES= {
+	'default' : {
+		'ENGINE' : 'django.db.backends.oracle',
+		'NAME' : 'orcl',
+		'USER' : 'scott',
+		'PASSWORD' : 'tiger',
+		'HOST' : 'localhost',
+		'PORT' : '1521',
+	}
+}
+
+
+postgresql:-
+-----------
+DATABASES= {
+	'default' : {
+		'ENGINE' : 'django.db.backends.postgresql',
+		'NAME' : 
+		'USER' : 
+		'PASSWORD' : 
+		'HOST' : 
+		'PORT' : 
+	}
+}
+
+ex:
+---
+step1:
+------
+to create a project
+
+	django-admin startproject proj20
+
+step2:
+------
+goto the project location and to create an application in that project location.
+
+	cd proj20
+
+	python manage.py startapp app20
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app20'
+]
+
+step4:
+------
+to  create a model in models.py file of the application
+
+	models.py
+	----------
+from django.db import models
+
+# Create your models here.
+class employe(models.Model):
+    eid=models.IntegerField(primary_key=True)
+    ename=models.CharField(max_length=30)
+    sal=models.DecimalField(max_digits=6,decimal_places=2)
+    active=models.BooleanField(default=True)
+    email=models.EmailField(blank=True)
+
+step5:
+------
+after create a model,next we need to check errors in our model.
+
+	python manage.py check
+
+step6:
+-----
+after checking the errors,next we need to apply the makemigrations
+
+	to generate the sql query for our model then we need to apply the makemigrations.
+
+	python manage.py makemigrations
+
+step7:
+----
+after apply the makemigrations next we need to apply the migration
+
+	to execute the sql query for our model then we need to apply the migrate
+
+	python manage.py migrate
+
+structure:
+----------
+	proj20
+	   |--->app20
+	   |      |--->models.py
+           |--->proj20
+           |      |--->settings.py
+	   |--->manage.py
+
+
+Django ORM
+-----------
+ORM(Object Relational Mapper)
+
+Django ORM provides an elegant and powerful way to interact with the database instead of writeing an sql queries.
+
+ORM describing how to access the data,manipulate the data and store the data into the database in object oriented fashion.
+
+by using ORM,we can perform CURD operations.
+
+	Create
+
+	Update
+
+	Retrieval
+	
+	Delete
+
+How to start Django shell?
+--------------------------
+	we can start the Django shell using the shell command
+
+		python manage.py shell
+
+Database Access through managers:-
+---------------------------------
+Django by default adds a manager called "objects" to every model class.
+
+The objects manager helps us to interact with the database in complicated ways.
+
+The objects manager is the most common way Django developers interact with the database.
+
+>>> from app20.models import employe
+>>> employe.objects
+<django.db.models.manager.Manager object at 0x00000204172BAE48>
+>>> type(employe.objects)
+<class 'django.db.models.manager.Manager'>
+
+	the objects manager provides some methods to perform the CURD operations.
+
+ex:
+----
+creating an object?
+
+>>> e1=employe(eid=101,ename="siva",sal=3000)
+>>> e1.save()
+
+>>> e2=employe(eid=102,ename="rama",sal=2000,active=False,email="rama123@gmail.com")
+>>> e2.save()
+
+ex:
+-----
+to create an object by using create() of objects manager?
+
+employe.objects.create(eid=103,ename="sachin",sal=4000)
+
+employe.objects.create(eid=104,ename="dhoni",sal=2500,active=False,email="dhoni7@gmail.com")
+
+ex:
+----
+to create an objects by using bulk_create() of objects manager?
+
+employe.objects.bulk_create([employe(eid=105,ename="rohith",sal=2500),employe(eid=106,ename="krishna",sal=2900,active=False,email="krishna1@yahoo.com")])
+
+ex:
+---
+to retreive the objects?
+
+	we can retreive the objects by using all() of objects manager
+
+all() to return the queryset object,queryobject is also same like as a list object in python but queryset object dont supporting negative indexing.
+
+
+>>> from app20.models import employe
+>>> x=employe.objects.all()
+>>> x
+<QuerySet [<employe: employe object (101)>, <employe: employe object (102)>, <employe: employe object (103)>, <employe: employe object (104)>, <employe: employe object (105)>, <employe: employe object (106)>]>
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> x[1]
+<employe: employe object (102)>
+>>> x[1].eid
+102
+>>> x[1].eid,x[1].ename
+(102, 'rama')
+>>> x[:3]
+[<employe: employe object (101)>, <employe: employe object (102)>, <employe: employe object (103)>]
+>>> x[2:]
+[<employe: employe object (103)>, <employe: employe object (104)>, <employe: employe object (105)>, <employe: employe object (106)>]
+>>> x[2:5]
+[<employe: employe object (103)>, <employe: employe object (104)>, <employe: employe object (105)>]
+>>> x[-1]
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "F:\django4pmnew\myvenv\lib\site-packages\django\db\models\query.py", line 293, in __getitem__
+    "Negative indexing is not supported."
+AssertionError: Negative indexing is not supported.
+
+note:
+----
+to get the backend sql for our model query?
+
+>>> print(employe.objects.all().query)
+SELECT "app20_employe"."eid", "app20_employe"."ename", "app20_employe"."sal", "app20_employe"."active", "app20_employe"."email" FROM "app20_employe"
+
+
+ex:
+---
+ordering the records?
+
+	we can ordereing the records by using order_by() of objects manager.
+
+	by default orderby() to return ascending order
+
+>>> x=employe.objects.all()
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> for rec in x.order_by('sal'):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+102 rama 2000.00 False rama123@gmail.com
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+101 siva 3000.00 True
+103 sachin 4000.00 True
+
+>>> for rec in x.order_by('-sal'):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+103 sachin 4000.00 True
+101 siva 3000.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+102 rama 2000.00 False rama123@gmail.com
+
+ex:
+----
+to return no.of objects?
+
+	we can get the no.of objects by using count() of objects manager
+
+>>> x=employe.objects.all()
+>>> x.count()
+6
+
+ex:
+---
+filter the objects?
+
+	we can filter the objects by using filter() of objects manager
+
+
+>>> x=employe.objects.all()
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+>>> for rec in x.filter(sal=2500):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+>>> for rec in x.filter(ename="siva"):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+>>> for rec in x.filter(active=False):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+102 rama 2000.00 False rama123@gmail.com
+104 dhoni 2500.00 False dhoni7@gmail.com
+106 krishna 2900.00 False krishna1@yahoo.com
+>>> for rec in x.filter(sal=2500,active=False):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+104 dhoni 2500.00 False dhoni7@gmail.com
+>>> for rec in x.filter(sal=2500,active=True):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+105 rohith 2500.00 True
+>>> for rec in x.filter(sal=2000,active=True):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+>>> for rec in x.filter(sal=2000,sal=2500):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+  File "<console>", line 1
+SyntaxError: keyword argument repeated
+>>>
+
+
+
+
+
+
+
+
+
+
+
+
+

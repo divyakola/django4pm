@@ -1,0 +1,117 @@
+ex:
+---
+create a djnago project to print "hello world" on the webpage?
+
+step1:
+-----
+to create a project
+	django-admin startproject projectname
+
+django-admin startproject proj2
+
+step2:
+-----
+goto project location and to create an application in that project location.
+
+	cd projectname
+
+	python manage.py startapp appname
+
+cd proj2
+
+python manage.py startapp app2
+
+
+step3:
+------
+to install our application in settings.py file of the project
+
+	settings.py
+	-------------
+INSTALLED_APPS = [
+
+    'app2'
+]
+
+step4:
+-----
+to create a view in views.py file of the application
+
+	views.py
+	--------
+from django.http import HttpResponse
+# Create your views here.
+def welcome(request):
+    return HttpResponse("hello world")
+
+
+step5:
+-----
+to configure the url pattern for our views in urls.py file
+
+	urls.py
+	------
+from django.contrib import admin
+from django.urls import path
+from app2 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',views.welcome)
+]
+
+
+step6:
+-----
+to apply the migrate for our applications(both builtin and userdefined)
+
+	python manage.py migrate
+
+step7:
+-----
+to start the server
+	
+	python manage.py runserver
+
+step8:
+------
+to send request to the server
+
+	http://127.0.0.1:8000/wel
+
+project structure:
+------------------
+	proj2
+	   |--->proj2
+	   |      |---> settings.py
+	   |      |---> urls.py
+           |--->app2
+	   |	  |---> views.py
+	   |--->manage.py
+
+
+View:
+-----
+a view is a python function or class,which is used to representing the business logics.
+
+a view take the request from the end user,process that request and give back the response to the enduser.
+
+	we can implement the views in views.py file of the application.
+
+	every view should be registered with a url pattern in urls.py file.
+
+types of views:
+--------------
+	views can be categorized into two types,they are
+
+1).Function based views
+
+2).class based views.
+
+function based views:
+--------------------
+	we can create a view by using functions,that type of views are called function based views.
+
+	whenever our requested url is matching of any one url pattern of urls.py file to return the request object,that request object is passing to default parameter of the view function and our view function will be executed.
+
+	in function based views,we can perform different http methods like GET(),POST(),PUT(),DELETE(),..., by using conditional statements.
+

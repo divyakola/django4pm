@@ -1,0 +1,195 @@
+		JavaScript
+		----------
+	Javascript is a object-based scripting programming language,it is introduced into the market in the year of 1995.
+
+	javascript is used to create client-side dynamic web pages.
+
+	javascript is not compiled language it is a interpreted language.
+	
+	javascript is a dynamic typed language
+
+	
+applications of Javascript:
+--------------------------
+to perform client-side validations
+to create a dynamic drop-down menus
+to display the current date and time on the webpages
+to create pop-windows and dialog boxes like alert,confirmation,...
+
+how to place the javascript code in our html code?
+------------------------------------------------
+	we can place the javascript code in our html code in 3-ways,they are
+
+	1).between the body tag of html 
+			inline javascript
+
+	2).between the head tag of html
+			internal javascript
+
+	3).to create a seperate javascript(.js) file
+			external javascript
+
+example for between the body tag of html
+----------------------------------------
+
+	js1.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1>welcome to Javascript</h1>
+<script type="text/javascript">
+alert("hello world");
+</script>
+</body>
+</html>
+
+
+example for between the head tag of html
+-----------------------------------------
+
+	js2.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function msg(){
+    alert("hello world");
+   }
+</script>
+</head>
+<body>
+<h1>welcome to Javascript</h1>
+<input type="button" value="ClickMe" onclick="msg()">
+</body>
+</html>
+
+
+example for external javascript:
+--------------------------------
+
+	js3.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="message.js">
+</script>
+</head>
+<body bgcolor="red">
+<h1>welcome to Javascript</h1>
+<input type="button" value="ClickMe" onclick="msg()">
+</body>
+</html>
+
+
+	message.js
+	----------
+function msg(){
+    alert("hello world");
+   }
+
+
+example for javascript variables
+---------------------------------
+
+	js4.html
+	--------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<script type="text/javascript">
+var a=10;
+var b=20;
+var c=a+b;
+document.write("the sum is: ",c);
+</script>
+</body>
+</html>
+
+
+example for conditional statements:
+-----------------------------------
+
+	js5.html
+	--------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<script type="text/javascript">
+var a=10;
+if(a>10){
+   document.write("a is greaterthan 10");
+  }
+else{
+    document.write("a is lessthan 10");
+   }
+</script>
+</body>
+</html>
+
+example to display the date and time on the webpage:
+---------------------------------------------------
+
+	js6.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+
+<button type="button" onclick="document.getElementById('demo').innerHTML=Date()">Clickme</button>
+<p id='demo'></p>
+
+</body>
+</html>
+
+
+		bootstrap
+		---------
+	bootstrap is a frontend framework for html, css, javascript.
+
+	bootstrap is used to create responsive websites with in the less time.
+
+
+ex:
+---
+	js6.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to My News World</h1>
+  <p class="lead">This is a simple News website,here we are provideing all varities of news information.</p>
+ 
+  <a class="btn btn-primary btn-lg" href="#" role="button">Home</a>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Political</a>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Movies</a>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Sports</a>
+</div>
+</body>
+</html>
+
+
+	base.css
+	--------
+body{
+  background-image:url("https://images.unsplash.com/photo-1573726568093-a16305f78741?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  background-size:cover;
+  background-repeat:no-repeat;
+  }
+
+div{
+  text-align:center;
+  margin:100;
+  padding:100;
+ }
+	

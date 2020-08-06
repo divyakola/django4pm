@@ -1,0 +1,381 @@
+model field lookups:
+-------------------
+	we can apply the filter operation on model fields very deeply in that case we are using field lookups.
+
+syntax:
+-------
+	fieldname__lookuname
+
+ex:
+---
+>>> from app20.models import employe
+>>> x=employe.objects.all()
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> for rec in x.filter(ename__startswith='s'):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+103 sachin 4000.00 True
+
+>>> for rec in x.filter(ename__endswith='a'):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> for rec in x.filter(ename__contains='o'):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+
+>>> for rec in x.filter(sal__gt=3000):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+103 sachin 4000.00 True
+
+>>> for rec in x.filter(sal__gte=3000):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+103 sachin 4000.00 True
+
+>>> for rec in x.filter(sal__lt=2500):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+102 rama 2000.00 False rama123@gmail.com
+
+>>> for rec in x.filter(sal__lte=2500):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+102 rama 2000.00 False rama123@gmail.com
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+
+how to performeing logical operations on the models?
+----------------------------------------------------
+	we can perform the logical operations on the models by using "Q" 
+
+>>> from django.db.models import Q
+>>> x=employe.objects.all()
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> for rec in x.filter(Q(ename__endswith='a') & Q(active=True)):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+
+>>> for rec in x.filter(Q(ename__endswith='a') | Q(active=True)):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> for rec in x.filter(~Q(ename__endswith='a')):
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+
+
+how to update the objects/records?
+---------------------------------
+	we can update the objects by using update() of object manager
+
+	update(),to return the no.of records we are updated.
+
+ex:
+----
+before update?
+
+>>> x=employe.objects.all()
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3000.00 True
+102 rama 2000.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 2900.00 False krishna1@yahoo.com
+
+>>> x.filter(ename__endswith='a').update(sal=3500)
+3
+
+after update?
+
+>>> y=employe.objects.all()
+>>> for rec in y:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 3500.00 True
+102 rama 3500.00 False rama123@gmail.com
+103 sachin 4000.00 True
+104 dhoni 2500.00 False dhoni7@gmail.com
+105 rohith 2500.00 True
+106 krishna 3500.00 False krishna1@yahoo.com
+
+
+>>> y.update(sal=5000)
+6
+
+after update?
+
+>>> z=employe.objects.all()
+>>> for rec in z:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 5000.00 True
+102 rama 5000.00 False rama123@gmail.com
+103 sachin 5000.00 True
+104 dhoni 5000.00 False dhoni7@gmail.com
+105 rohith 5000.00 True
+106 krishna 5000.00 False krishna1@yahoo.com
+
+how to delete the objects/records?
+----------------------------------
+	we can delete the records/objects by using delete() of objects manager.
+
+	the delete() to return the no.of records we are deleted.
+
+ex:
+----
+before deleted?
+
+>>> z=employe.objects.all()
+>>> for rec in z:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+101 siva 5000.00 True
+102 rama 5000.00 False rama123@gmail.com
+103 sachin 5000.00 True
+104 dhoni 5000.00 False dhoni7@gmail.com
+105 rohith 5000.00 True
+106 krishna 5000.00 False krishna1@yahoo.com
+
+>>> z.filter(ename__startswith='s').delete()
+(2, {'app20.employe': 2})
+
+after deleted?
+
+>>> x=employe.objects.all()
+>>> for rec in x:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+102 rama 5000.00 False rama123@gmail.com
+104 dhoni 5000.00 False dhoni7@gmail.com
+105 rohith 5000.00 True
+106 krishna 5000.00 False krishna1@yahoo.com
+
+>>> x.delete()
+(4, {'app20.employe': 4})
+>>> y=employe.objects.all()
+>>> for rec in y:
+...     print(rec.eid,rec.ename,rec.sal,rec.active,rec.email)
+...
+
+no records
+
+
+ex:
+----
+create django project to perform CURD operations?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj21
+
+step2:
+-----
+goto project location and to create an application in that project location
+
+	cd proj21
+
+	python manage.py startapp app21
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	------------
+INSTALLED_APPS = [
+    
+    'app21'
+]
+
+step4:
+------
+to create a model in models.py file in our application
+
+	models.py
+	---------
+from django.db import models
+
+# Create your models here.
+class product(models.Model):
+    pid=models.IntegerField(primary_key=True)
+    pname=models.CharField(max_length=20)
+    pcost=models.DecimalField(max_digits=6,decimal_places=2)
+
+step5:
+------
+to check the errors in our model
+
+	python manage.py check
+
+step6:
+-----
+to apply the makemigrations
+
+	python manage.py makemigrations
+
+step7:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+------
+create templates and to set the path for our templates in settings.py file of the project.
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+      },
+]
+
+step9:
+------
+to create a view in vies.py file of the application
+
+	views.py
+	--------
+from django.shortcuts import render
+from .models import product
+from django.http import HttpResponse
+# Create your views here.
+def pinsert(request):
+    return render(request,'pinput.html')
+
+def creation(request):
+    pid1=int(request.GET['p1'])
+    pname1=request.GET['p2']
+    pcost1=float(request.GET['p3'])
+    p=product(pid=pid1,pname=pname1,pcost=pcost1)
+    p.save()
+    return HttpResponse("creating an object")
+
+def retreival(request):
+    objects=product.objects.all()
+    return render(request,'retreive.html',{'records':objects})
+    
+
+	pinput.html
+	------------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form action="add">
+Enter ProductId:<input type="text" name="p1"><br><br>
+Enter ProductName:<input type="text" name="p2"><br><br>
+Enter ProductCost:<input type="text" name="p3"><br><br>
+<input type="submit" value="add">
+</form>
+</body>
+</html>
+
+	retreive.html
+	--------------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<table border="2">
+<tr><th>Pid</th>
+    <th>Pname</th>
+    <th>Pcost</th>
+</tr>
+{% for rec in records %}
+<tr><td>{{rec.pid}}</td>
+    <td>{{rec.pname}}</td>
+    <td>{{rec.pcost}}</td>
+<tr>
+{% endfor %}
+</table>
+</body>
+</html>
+
+
+step10:
+-------
+to configure the url patterns for our views in urls.py
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app21 import views
+from django.conf.urls import url
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('pin/',views.pinsert),
+    url(r'add',views.creation),
+    path('res/',views.retreival)
+]
+
+step11:
+-------
+to start the server
+
+	python manage.py runserver
+
+step12:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/pin
+
+	http://127.0.0.1:8000/res
+
+project structure:
+-------------------
+	proj21
+	   |--->app21
+	   |      |--->models.py
+	   |      |--->views.py
+	   |--->proj21
+	   |      |--->settings.py
+	   |      |--->urls.py
+	   |--->templates
+	   |      |--->pinput.html
+	   |      |--->retreive.html
+	   |--->manage.py
+

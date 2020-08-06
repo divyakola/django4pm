@@ -1,0 +1,219 @@
+limitations in function based views:
+------------------------------------
+	we can use different HttpRequest methods in the function based views by using conditional statements.
+
+	the function based views don't supporting inheritance concept.
+
+
+class based views:
+------------------
+	this is a another alternative way to implementing the views.
+
+	we can implement views by using class that type of views are called class based views.
+
+	we can define every class as a view,our class is extending by View class of django.views.generic
+
+	every HttpRequest method haveing seperate methods in View classs.
+
+ex:
+----
+create djnago project to print "hello world" by using class based views.
+
+step1:
+-----
+	to create a project
+
+	django-admin startproject proj11
+
+step2:
+----
+	goto project location and to create an application in that project location.
+
+	cd proj11
+
+	python manage.py startapp app11
+
+step3:
+-----
+	to install our application in settings.py file of the project.
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app11'
+]
+
+step4:
+------
+	to create a classbased view in views.py file of the application
+
+	views.py
+	--------
+from django.shortcuts import render
+from django.views.generic import View
+from django.http import HttpResponse
+# Create your views here.
+class welcome(View):
+    def get(self,request):
+        return HttpResponse("Hello world")
+
+
+step5:
+-----
+	to configure the url patterns for our views in urls.py file.
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app11.views import welcome
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',welcome.as_view())
+]
+
+step6:
+-----
+	to apply the migrate
+
+	python manage.py migrate
+
+step7:
+------
+	to start the server
+
+	python manage.py runserver
+
+step8:
+------
+	to send request to the server
+
+	http://127.0.0.1:8000/wel
+
+project structure:
+-----------------
+	proj11
+	   |--->app11
+	   |      |--->views.py
+           |--->proj11
+           |      |--->urls.py
+           |      |--->settings.py
+           |--->manage.py
+
+
+ex:
+---
+create django project with class based views to perform addition of two numbers by using get()?
+
+step1:
+-----
+	to create a project
+
+	django-admin startproject proj12
+
+step2:
+----
+	goto the project location and to create an application in that project location.
+
+	cd proj12
+
+	python manage.py startapp app12
+
+step3:
+------
+	to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app12'
+]
+ 
+step4:
+-----
+	to create a templates and to set the path for our templates in settings.py file of the project.
+
+	settings.py
+	------------
+TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+
+
+TEMPLATES = [
+    {
+        
+        'DIRS': [TEMPLATE_DIR],
+     },
+]
+
+step5:
+------
+to create a classbased views in views.py file
+
+	views.py
+	---------
+from django.shortcuts import render
+from django.views.generic import View
+from django.http import HttpResponse
+# Create your views here.
+class insert(View):
+    def get(self,request):
+        return render(request,'input.html')
+class addition(View):
+    def get(self,request):
+        a=int(request.GET['fn'])
+        b=int(request.GET['sn'])
+        return HttpResponse("the sum is: "+str(a+b))
+        
+
+	input.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form action="add">
+Enter FirstNumber: <input type="text" name="fn"><br><br>
+Enter SecondNumber: <input type="text" name="sn"><br><br>
+<input type="submit" value="ADD">
+</form>
+</body>
+</html>
+
+step6:
+------
+	to configure the url patterns for our views in urls.py file 
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app12.views import insert,addition
+from django.conf.urls import url
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('in/',insert.as_view()),
+    url(r'add',addition.as_view())
+]
+
+step7:
+------
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+-----
+to start the server
+
+	python manage.py runserver
+
+step9:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/in
+
+
+
+

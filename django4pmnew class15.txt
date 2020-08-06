@@ -1,0 +1,439 @@
+ex:
+----
+create a django project to read the data from the user input to perform the addition of two numbers,to return that on the webpage by using get()
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj8
+
+step2:
+------
+goto project location and to create an application in that project location.
+
+	cd proj8
+
+	python manage.py startapp app8
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	----------
+INSTALLED_APPS = [
+    
+    'app8'
+]
+
+
+step4:
+------
+to create a templates and setting the path for our templates in settings.py file of the project.
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+
+step5:
+-----
+to create a view in in views.py file of the application.
+
+	views.py
+	--------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def insert(request):
+    return render(request,'input.html')
+
+def addition(request):
+    a=int(request.GET['fn'])
+    b=int(request.GET['ln'])
+    return HttpResponse("the sum is: "+str(a+b))
+    
+	input.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<form action="add">
+Emter FirstNumber<input type="text" name="fn"><br><br>
+Enter LastNumber<input type="text" name="ln"><br><br>
+<input type="submit" value="Add">
+</form>
+</body>
+</html>
+
+
+step6:
+-----
+to configure the url patterns for our views in urls.py file 
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url
+from app8 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('in/',views.insert),
+    url(r'add',views.addition)
+]
+
+step7:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+-----
+to start the server
+
+	python manage.py runserver
+
+step9:
+-----
+to send the request to the server
+
+	http://127.0.0.1:8000/in
+
+		(or)
+
+	http://localhost:8000/in
+
+project structure:
+------------------
+	proj8
+	   |--->app8
+	   |      |--->views.py
+	   |--->proj8
+	   |      |--->settings.py
+	   |      |--->urls.py
+           |--->templates
+	   |      |--->input.html
+	   |--->manage.py
+
+
+
+
+ex:
+----
+create a django project to read the data from the user input to perform the addition of two numbers,to return that on the webpage by using post()
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj9
+
+step2:
+------
+goto project location and to create an application in that project location.
+
+	cd proj9
+
+	python manage.py startapp app9
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	----------
+INSTALLED_APPS = [
+    
+    'app9'
+]
+
+
+step4:
+------
+to create a templates and setting the path for our templates in settings.py file of the project.
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+
+step5:
+-----
+to create a view in in views.py file of the application.
+
+	views.py
+	--------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def insert(request):
+    return render(request,'input.html')
+
+def addition(request):
+    a=int(request.POST['fn'])
+    b=int(request.POST['ln'])
+    return HttpResponse("the sum is: "+str(a+b))
+    
+	input.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<form action="add" method="post">
+Emter FirstNumber<input type="text" name="fn"><br><br>
+Enter LastNumber<input type="text" name="ln"><br><br>
+<input type="submit" value="Add">
+</form>
+</body>
+</html>
+
+
+step6:
+-----
+to configure the url patterns for our views in urls.py file 
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url
+from app9 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('in/',views.insert),
+    url(r'add',views.addition)
+]
+
+step7:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+-----
+to start the server
+
+	python manage.py runserver
+
+step9:
+-----
+to send the request to the server
+
+	http://127.0.0.1:8000/in
+
+		(or)
+
+	http://localhost:8000/in
+
+output:
+-------
+CSRF verification failed. Request aborted.
+
+Help
+Reason given for failure:
+
+    CSRF token missing or incorrect.
+
+what is CSRF?
+-------------
+CSRF(Cross Site Request Forgery) is an attacker,we are prevent our websites from these attacker,we would use this tag {% csrf_token %} in the form whenever using method atttribute is post.
+
+updated template file is
+
+	input.html
+	----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<form action="add" method="post">
+{% csrf_token %}
+Emter FirstNumber<input type="text" name="fn"><br><br>
+Enter LastNumber<input type="text" name="ln"><br><br>
+<input type="submit" value="Add">
+</form>
+</body>
+</html>
+
+
+project structure:
+------------------
+	proj9
+	   |--->app9
+	   |      |--->views.py
+	   |--->proj9
+	   |      |--->settings.py
+	   |      |--->urls.py
+           |--->templates
+	   |      |--->input.html
+	   |--->manage.py
+
+
+ex:
+----
+create a django project to read the data from the user input to perform the addition of two numbers,to return that on the webpage by using both get() and   post() methods?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj10
+
+step2:
+------
+goto project location and create an application in that project location.
+
+	cd proj10
+
+	python manage.py startapp app10
+
+step3:
+------
+in install our application in settings.py file of the project
+	
+	settings.py
+	-----------
+INSTALLED_APPS = [
+   
+    'app10'
+]
+
+step4:
+-----
+to create a templates and to set the path for our templates in settings.py file
+
+	settings.py
+	-----------
+TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
+
+
+TEMPLATES = [
+    {
+        
+        'DIRS': [TEMPLATE_DIR],
+        
+    },
+]
+
+
+step5:
+-----
+to create a views in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def ginsert(request):
+    return render(request,'app10/ginput.html')
+def pinsert(request):
+    return render(request,'ap10/pinput.html')
+
+def addition(request):
+    if request.method=="GET":
+        a=int(request.GET['fn'])
+        b=int(request.GET['ln'])
+        return HttpResponse("the sum is: "+str(a+b))
+    else:
+        a=int(request.POST['fn'])
+        b=int(request.POST['ln'])
+        return HttpResponse("the sum is: "+str(a+b))
+    
+        
+	ginput.html
+	-----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+<form action="add">
+Emter FirstNumber<input type="text" name="fn"><br><br>
+Enter LastNumber<input type="text" name="ln"><br><br>
+<input type="submit" value="Add">
+</form>
+</body>
+</html>
+
+	pinput.html
+	-----------
+<!DOCTYPE html>
+<html>
+<body bgcolor="blue">
+<form action="add" method="post">
+   {% csrf_token %}
+Emter FirstNumber<input type="text" name="fn"><br><br>
+Enter LastNumber<input type="text" name="ln"><br><br>
+<input type="submit" value="Add">
+</form>
+</body>
+</html>
+
+step6:
+------
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url
+from app10 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('gin/',views.ginsert),
+    path('pin/',views.pinsert),
+    url('add',views.addition)
+]
+
+step7:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+-----
+to start the server
+
+	python manage.py runserver
+
+step9:
+-----
+to send the request to the server
+
+	http://127.0.0.1:8000/gin
+
+		(or)
+
+	http://127.0.0.1:8000/pin
+
+
+project structure
+------------------
+	proj10
+	   |--->app10
+           |      |--->views.py
+	   |--->proj10
+	   |      |--->settings.py
+	   |      |--->urls.py
+	   |--->templates
+	   |      |--->app10
+	   |      |      |--->ginput.html
+	   |      |      |--->pinput.html
+           |--->manage.py
+
+
+	

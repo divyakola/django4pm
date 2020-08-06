@@ -1,0 +1,178 @@
+ex:
+---
+to create a django project to display the current system date and time on the webpage?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj3
+
+step2:
+----
+goto project location and to create an application in that project lpocation
+
+	cd proj3
+
+	python manage.py startapp app3
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	----------
+INSTALLED_APPS = [
+    
+    'app3'
+]
+
+
+step4:
+------
+to create view in views.py file of the application
+
+	views.py
+	--------
+from django.shortcuts import render
+from datetime import datetime
+from django.http import HttpResponse
+# Create your views here.
+def dateandtime(request):
+    x=datetime.now()
+    return HttpResponse("the current system date and time is: "+str(x))
+
+step5:
+------
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app3 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('dt/',views.dateandtime)
+]
+
+step6:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step7:
+-----
+to start the server
+
+	python manage.py runserver
+
+step8:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/dt
+
+project structure:
+-------------------
+	proj3
+	   |--->app3
+	   |      |--->views.py
+	   |--->proj3
+	   |      |--->settings.py
+	   |      |--->urls.py
+	   |--->manage.py
+
+ex:
+----
+create a django project with multiple views in single application?
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj4
+
+step2:
+------
+goto project location and to create an application in that project location
+
+	cd proj4
+
+	python manage.py startapp app4
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app4'
+]
+
+step4:
+-----
+to create a views in views.py file of the application
+
+	views.py
+	-------
+from django.shortcuts import render
+from datetime import datetime
+from django.http import HttpResponse
+# Create your views here.
+def welcome(request):
+    return HttpResponse("hello world")
+
+def dateandtime(request):
+    x=datetime.now()
+    return HttpResponse("the current system date and time is: "+str(x))
+
+step5:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app4 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',views.welcome),
+    path('dt/',views.dateandtime)
+]
+
+step6:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step7:
+-----
+to start the server
+
+	python manage.py runserver
+
+step8:
+-----
+to send the url request to the server
+
+	http://127.0.0.1:8000/dt
+	http://127.0.0.1:8000/wel
+
+
+project structure
+-----------------
+	proj4
+	   |--->app4
+	   |      |--->views.py
+	   |--->proj4
+           |      |--->settings.py
+	   |      |--->urls.py
+           |--->manage.py
+
+

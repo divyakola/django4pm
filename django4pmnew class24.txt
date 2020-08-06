@@ -1,0 +1,271 @@
+How to customizing django admin site:
+---------------------------------------
+	To customize the appearance of models in Django Admin site, we can create a new class "Adminclass" which inherits from "admin.ModelAdmin" in admin.py file.
+
+ModelAdmin Attributes:
+-----------------------
+1.list_display:- It contains which model fields to  display on the list page.
+
+                 It accepts a list (or) tuple of fieldnames which you want to                  display.
+	
+2.search_fields:- This attributes enables the search function on the list page.
+
+		  It accepts a list (or) tuple of fieldnames where you want to 		  search.
+
+		  It performs a case- insensitive search.
+	
+3.ordering:-     It specifies how the list of objects should be ordered in the                  django admin site.
+
+		 It accepts a list (or) tuple of fieldnames to specify the order.
+
+	
+4.list_filter:-  This attribute activate the filtering bar.
+
+		 It accepts a list(or) tuple of field names.
+
+		 Django provides automatically different shortcuts to filter the 			 objects based on the type of the field.
+
+
+Ex:- Field type		Shortcuts of filter the objects
+     -------------------------------------------------	
+	   DateField		Today,
+				Past 7 days,
+				This month,
+				This year
+
+	BooleanField		All
+				Yes
+				No
+
+
+5.date_hierarchy:- This attribute is specially designed to provide an intelligent 			   date based drill-down navigation just above Action select base.
+
+	           It accepts a string format not a list( or) tuple.
+		   it is applicable only on Datefield.
+
+after customize the admin site,
+
+	admin.py
+	--------
+from django.contrib import admin
+from .models import employe
+# Register your models here.
+class employeAdmin(admin.ModelAdmin):
+    list_display=["eid","ename","sal","dno","dob"]
+    search_fields=["dno","ename"]
+    ordering=["sal"]
+    list_filter=["sal","dno","dob"]
+    date_hierarchy="dob"
+admin.site.register(employe,employeAdmin)
+
+
+	working with static files?
+	--------------------------
+static files means css,javascript and images.
+
+	we can working with static files,to configure the some settings in settings.py file of the project.
+
+	settings.py
+	-----------
+after static url
+
+STATICFILES_DIRS=[
+	os.path.join(BASE_DIR,'static'),
+    ]
+
+how to loading the static files into templates?
+----------------------------------------------
+	we can load the css files into templates,by using following syntax,
+
+	{% load static %}
+
+<link rel="stylesheet" href="{% static 'cssfilename.css' %}">
+
+
+	we can load the javascript files into templates,by using following syntax,
+
+	{% load static %}
+
+<script type="text/javascript" src="{% static 'javscriptfilename.js' %}>
+</script>
+
+	we can load the images into templates,by using following syntax,
+
+	{% load static %}
+
+<img src="{% static 'imagefilenamewithextension' %} />
+
+
+
+ex:
+----
+step1:
+-----
+to create a project
+
+	django-admin startproject proj25
+
+step2:
+-----
+goto project location and to create an application in that project location
+
+	cd proj25
+
+	python manage.py startapp app25
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app25'
+]
+
+step4:
+-----
+to create a templates and to set the path for our templates in settings.py file of project.
+
+	settings.py
+	------------
+
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        
+    },
+]
+
+
+step5:
+------
+to create a static files and to set the path for our static files in settings.py file of the project.
+
+	settings.py
+	-----------
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+    ]
+
+
+step6:
+------
+to create a view in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+
+# Create your views here.
+def welcome(request):
+    return render(request,'wel.html')
+
+
+	wel.html
+	---------
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'base.css' %}">
+<script type="text/javascript" src="{% static 'msg.js' %}">
+</script>
+</head>
+<body>
+<h1>welcome to mysite</h1>
+<h2>Django is a python related high-level web application frmework,it makes easier to build the better web applications with lesscode and more quickly</h2>
+<center><img src={% static 'siva.jpg' %} /></center>
+</body>
+</html>
+
+	base.css
+	--------
+body{
+   background-image:url("https://images.unsplash.com/photo-1417021423914-070979c8eb34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+
+  background-repeat:no-repeat;
+  background-size:cover;
+ }
+
+h1{
+   background-color:white;
+   color:red;
+   text-align:center;
+   size:20px;
+  }
+
+img{
+   border-radius: 50%;
+  }
+
+
+	msg.js
+	------
+alert("hello good evening")
+
+
+step7:
+-----
+to configure the url patterns for our views in urls.py file of the project
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app25 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('hello/',views.welcome)
+]
+
+
+step8:
+-------
+to apply the migrate
+
+	python manage.py migrate
+
+step9:
+-----
+to start the server
+
+	python manage.py runserver
+
+step10:
+-------
+to send the request to the server
+
+	http://127.0.0.1:8000/hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

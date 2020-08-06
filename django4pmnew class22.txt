@@ -1,0 +1,277 @@
+	Model Relationships
+	---------------------
+In RDBMS,we can maintain the relationships between the tables in 3-ways,they are
+	
+	1. Many-to-one relationship
+	2. Many-to-many relationships
+	3. One-to-one relationship
+
+
+Many-to-one relationship:
+-----------------------------
+	We can define many-to-one relationship we use django.db.models.ForeignKey
+
+	ForeignKey requires a positional argument the class to which the model is related.
+
+Syntax:
+	class Modelname(models.Model):
+		----------
+		----------
+		----------
+		author=models.ForeignKey(User,related_name=blog_posts')
+
+	This means an author may have multiple (or) many posts.
+
+example:
+-------
+from django.db import models
+
+class Reporter(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField()
+
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
+
+class Article(models.Model):
+    headline = models.CharField(max_length=100)
+    pub_date = models.DateField()
+    reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.headline
+
+
+Many-to-many relationships:
+---------------------------
+	We can define many-to-many relationship we use django.db.models.ManyToManyField
+
+	Ex:- class post(models.Model):
+			-----------
+			----------
+			-----------
+			Likes=models.ManyToManyField(User,related_name='likes')
+
+	This means a post has multiple likes from multiple authors.
+
+
+
+example:
+-------
+from django.db import models
+
+class Publication(models.Model):
+    title = models.CharField(max_length=30)
+
+    
+    def __str__(self):
+        return self.title
+
+class Article(models.Model):
+    headline = models.CharField(max_length=100)
+    publications = models.ManyToManyField(Publication)
+
+    
+    def __str__(self):
+        return self.headline
+
+
+
+One-to-one relationship:
+----------------------- 
+	We can define one-to-one relationship we use django.db.models.OneToOneField
+
+	Ex:- class profile(models.Model):
+			----------
+			----------
+			----------
+			User=models.OneToOneField(User,on_delete=models.CASCADE)
+
+
+example:
+--------
+from django.db import models
+
+class Place(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+
+    def __str__(self):
+        return "%s the place" % self.name
+
+class Restaurant(models.Model):
+    place = models.OneToOneField(Place,on_delete=models.CASCADE,
+        primary_key=True,)
+    serves_hot_dogs = models.BooleanField(default=False)
+    serves_pizza = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "%s the restaurant" % self.place.name
+
+class Waiter(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "%s the waiter at %s" % (self.name, self.restaurant)
+
+
+
+Django Forms
+		------------
+	Django provides Forms,we can use these Forms instead of html forms.
+
+	Django Forms provides reusability of code and reduce the code.
+
+	Forms can be categorized into two types,they are
+
+	1).Normal Form
+
+	2).ModelForm
+
+Normal Form:
+-----------
+	a form is a class,any class which is extending by Form class of forms module.
+
+	we can creating a forms in forms.py file of the application.
+
+	forms.py file is not created automatically,we can create forms.py file manually in our application.
+
+example:
+-------
+step1:
+-----
+to create a project
+
+	django-admin startproject proj22
+
+step2:
+-----
+goto project location and to create an application in that project location
+
+	cd proj22
+
+	python manage.py startapp app22
+
+step3:
+------
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app22'
+]
+
+step4:
+-----
+to create a normal form in forms.py file in the application
+
+	forms.py
+	---------
+from django import forms
+
+class student(forms.Form):
+    fname=forms.CharField(label="Enter Firstname: ",max_length=20)
+    lname=forms.CharField(label="Enter Lastname: ",max_length=20)
+    
+
+
+step5:
+-----
+to create a templates and to set the path for our templates in settings.py file of the project.
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        
+    },
+]
+
+
+step6:
+------
+to create a view in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+from .forms import student
+from django.http import HttpResponse
+# Create your views here.
+def std_info(request):
+    s=student()
+    return render(request,'stdinfo.html',{'std':s})
+def result(request):
+    return HttpResponse("submitted successfully")
+    
+
+	stdinfo.html
+	------------
+<!DOCTYPE html>
+<html>
+<body bgcolor="powderblue">
+<form action="res">
+{{std.as_p}}
+<input type="submit" value="insert">
+</form>
+</body>
+</html>
+
+
+step7:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	--------
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url
+from app22 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('info/',views.std_info),
+    url(r'res',views.result)
+]
+
+step8:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step9:
+------
+to start the server
+
+	python manage.py runserver
+
+step10:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/info
+
+
+project structure:
+-------------------
+	proj22
+	   |--->app22
+           |      |--->forms.py
+	   |      |--->views.py
+           |--->proj22
+	   |      |--->settings.py
+	   |      |--->urls.py
+           |--->templates
+           | 	  |--->stdinfo.html
+	   |--->manage.py
+
+
+
+	

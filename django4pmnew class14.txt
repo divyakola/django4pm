@@ -1,0 +1,125 @@
+Templates:
+---------
+	a template is nothing but a html file which we can include python code by using some template languages.
+
+	a template language is special language,the template languages are DTL,Jinja2,.....
+
+	the template languages are provoide the reusability of html code.
+
+	the templates are used to representing the presentation logics.
+
+	we can representing the template variables by using {{ }}
+
+	we can representing the template tags by using {% %}
+
+ex:
+---
+create a project to print "hello world" by using templates?
+
+step1:
+-----
+to create a project
+
+	django-adimin startproject proj7
+
+step2:
+-----
+goto project location and to create an application in that project location.
+
+	cd proj7
+
+	python manage.py startapp app7
+
+step3:
+------
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app7'
+] 
+
+step4:
+----
+to create a templates and to set the path for our templates in settings.py
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+      },
+]
+
+
+step5:
+-----
+to create a view in views.py file
+
+	views.py
+	--------
+from django.shortcuts import render
+
+# Create your views here.
+def welcome(request):
+    return render(request,'sample.html')
+
+	
+	sample.html
+	-----------
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body bgcolor="red">
+<h1>hello world</h1>
+</body>
+</html>
+
+step5:
+-----
+to configure the url patterns for our views in urls.py file of the project
+
+	urls.py
+	------
+from django.contrib import admin
+from django.urls import path
+from app7 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',views.welcome,name="welcome")
+]
+
+step6:
+------
+to apply the migrate
+
+	python manage.py migrate
+
+step7:
+------
+to start the server
+
+	python manage.py runserver
+
+step8:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/wel
+
+project structure:
+-----------------
+	proj7
+	   |--->app7
+	   |      |--->views.py
+	   |--->proj7
+	   |      |--->settings.py
+	   |      |--->urls.py
+	   |--->templates
+	   |      |--->sample.html
+	   |--->manage.py
+

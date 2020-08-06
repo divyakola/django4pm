@@ -1,0 +1,151 @@
+example:
+-------
+create a django project,to design the url patterns by using regular expressions?
+
+step1:
+-----
+to create a project 
+	
+	django-admin startproject proj6
+
+step2:
+-----
+goto that project location and create an application in that project
+
+	cd proj6
+
+	python manage.py startapp app6
+
+step3:
+------
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app6'
+]
+
+step4:
+------
+to create a view in views.py file
+
+	views.py
+	--------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def welcome(request):
+    return HttpResponse("hello world")
+
+
+step5:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url
+from app6 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    url(r'wel',viws.welcome)
+]
+
+step6:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step7:
+-----
+to start the server
+
+	python manage.py runserver
+
+step8:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/wel
+
+project structure:
+-----------------
+	proj6
+	   |--->app6
+	   |      |--->views.py
+           |--->proj6
+	   |      |--->settings.py
+	   |      |--->urls.py
+	   |--->manage.py
+
+
+what is HTTP?
+------------
+	HTTP(Hyper Text Transfer Protocol) is a web protocol,which is used to enable the communication between client and server.
+
+	we can make/create the request object by using HttpRequest class
+
+	we can get the response object by using HttpResponse class.
+
+the HttpRequest methods are,
+
+	GET(),POST(),PUT(),DELETE(),MOVE(),.........
+
+the most commonly used HttpRequest methods are GET() and POST() in a web application.
+
+differences between GET() and POST()?
+------------------------------------
+
+	GET()				POST()
+------------------------------------------------------------
+1).it is used to get the data	    1).it is used to post the data
+from the server and we can post	       to the server(small,medium,
+the small ammount of data to the       large amount of data).
+server.
+
+
+2).we can made the get request in   2).we can made the post req in
+3-ways,they are			       one way,i.e by submitting   
+by typeing url on the address bar,     the form.
+by clicking on hyperlinks,
+by submitting the form
+
+3).it is a default request	    3).we can made the post 
+                                       request manually.
+
+4).GET() don't provide any          4).POST() provide security.
+security.
+
+5).it is not suitable for	    5).it is suitable for sending
+sending sensitive information          the sensitive information
+
+6).it is not suitable for	    6).it is suitable for 
+uploading the files                    uploading the files
+
+7).in GET(),the requested url	    7).in POST(),the requested url
+is append to the query string          is not appended to the
+                                       query string.
+
+
+note:
+------
+whenever we are using GET(),one request object is created that is represented as dictionary object.
+
+that dictionary object data will be loading into GET variable.
+
+	if we want to get the values from GET request object hy using hashing.
+	request.GET['key']
+
+
+whenever we are using POST(),one request object is created that is represented as dictionary object.
+
+that dictionary object data will be loading into POST variable.
+
+	if we want to get the values from POST request object hy using hashing.
+	request.POST['key']
+

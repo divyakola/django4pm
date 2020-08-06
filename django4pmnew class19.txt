@@ -1,0 +1,238 @@
+example for extends tag
+-----------------------
+step1:
+-----
+to create a project
+
+	django-admin startproject proj18
+
+step2:
+-----
+goto the project location and to create an application in that project location.
+
+	cd proj18
+
+	python manage.py startapp app18
+
+step3:
+------
+to install our application in settings.py file of the project
+
+	settings.py
+	----------
+INSTALLED_APPS = [
+    
+    'app18'
+]
+
+step4:
+------
+to create a templates and to set the path for our templates in settings.py file of the project
+
+	settings.py
+	------------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+step5:
+-----
+to create a view in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+
+# Create your views here.
+def welcome(request):
+    return render(request,'base.html')
+
+
+	base.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+{% extends 'sample.html' %}
+</body>
+</html>
+
+	sample.html
+	-----------
+<h1>welcome to Django world</h1>
+
+step6:
+------
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app18 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',views.welcome)
+]
+
+
+step7:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+-----
+to start the server
+
+	python manage.py runserver
+
+step9:
+-----
+to send the request to the server
+
+	http://127.0.0.1:8000/wel
+
+
+
+example for include tag
+-----------------------
+step1:
+-----
+to create a project
+
+	django-admin startproject proj19
+
+step2:
+-----
+goto the project location and to create an application in that project location.
+
+	cd proj19
+
+	python manage.py startapp app19
+
+step3:
+------
+to install our application in settings.py file of the project
+
+	settings.py
+	----------
+INSTALLED_APPS = [
+    
+    'app19'
+]
+
+step4:
+------
+to create a templates and to set the path for our templates in settings.py file of the project
+
+	settings.py
+	------------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+step5:
+-----
+to create a view in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+
+# Create your views here.
+def welcome(request):
+    return render(request,'base.html')
+
+
+	base.html
+	---------
+<!DOCTYPE html>
+<html>
+<body bgcolor="red">
+{% include 'sample.html' %}
+<h1>welcome to python world</h1>
+</body>
+</html>
+
+	sample.html
+	-----------
+<h1>welcome to Django world</h1>
+
+step6:
+------
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app18 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',views.welcome)
+]
+
+
+step7:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step8:
+-----
+to start the server
+
+	python manage.py runserver
+
+step9:
+-----
+to send the request to the server
+
+	http://127.0.0.1:8000/wel
+
+
+examples for {% block content %}
+----------------------------------
+	base.html
+	---------
+<html>
+  <head>
+  </head>
+
+  <body>
+        {% block content %}
+        {% endblock %}
+   </body>
+</html>
+
+
+	blog.html  --> extends tag example
+	--------
+{% extends 'base.html' %}
+
+{% block content %}
+    # write your blog related code here
+{% endblock %}
+
+
+	blog.html --> include tag
+	---------
+{% extends 'base.html' %}
+
+{% block content %}
+    # write your blog related code here
+    {% include 'posts.html' %}  
+{% endblock %}
+
+
+
+

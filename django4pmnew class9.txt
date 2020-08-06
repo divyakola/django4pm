@@ -1,0 +1,140 @@
+	after activate our virtual environment,next we need to install django.
+
+how to install django?
+----------------------
+	we can install django by using "pip"
+
+	pip install django==versionnumber
+
+
+	if we dont specify any version number,automatically to download latest version.
+
+ex:
+---
+pip install django
+
+how to get django version?
+--------------------------
+	we can get the django version by using following command,
+
+	django-admin --version
+
+how to create a django project:
+------------------------------
+	we can create a django project by using following syntax,
+
+	django-admin startproject projectname
+
+ex:
+----
+	django-admin startproject proj1
+
+structure of the project
+------------------------
+	proj1
+	  |--->proj1
+	  |	  |--->__init__.py
+	  |       |--->settings.py
+          |       |--->wsgi.py
+	  |       |--->asgi.py
+	  |       |--->urls.py
+	  |--->manage.py
+
+__init__.py : we can treat any package as a python package,that package should contain __init__.py file.
+
+settings.py: we can configure all the settings of the project like applications,templates,static files,media files,database,....
+
+wsgi.py : web service gateway interface,it's enable the synchronus communication between webserver and web application.
+
+asgi.py : asynchronus gateway interface,it's enable the asynchronus communication between webserver and web application.
+
+urls.py : we can configure all the url patterns of the project
+
+manage.py : manage.py is a one commandline utility,it provides some commands to perform the operations.
+
+	runserver
+	startapp
+	check
+	makemigrations
+	migrate
+	createsuperuser,...
+
+
+how to create an application in our project?
+--------------------------------------------
+	if we want to create application in our project by using following syntax,
+
+	cd projectname
+
+	python manage.py startapp applicationname
+
+ex:
+---
+cd proj1
+
+python manage.py startapp app1
+
+structure of the application
+----------------------------
+	proj1
+	   |--->proj1
+           |--->app1
+           |      |--->migrations
+	   |      |       |---> __init__.py
+	   |      |--->__init__.py
+	   |      |--->admin.py
+	   |      |--->apps.py
+           |      |--->tests.py
+           |      |--->models.py
+           |      |--->views.py
+	   |--->manage.py
+
+
+	
+__init__.py : we can treat any package as a python package,that package should contain __init__.py file.
+
+admin.py : if we want to use our models in the django admin panel,in that case we can register our models in admin.py file.
+
+apps.py : we can configure application level settings
+
+tests.py : we can write the unit-test cases for testing an application.
+
+models.py : we can represent the models in our application
+
+views.py " we can represent the views in our application
+
+
+how to run the server?
+---------------------
+	we can run the server by using following command,
+
+	python manage.py runserver
+
+how to send the request to the server?
+--------------------------------------
+we can send the request to the server,by using following command
+
+	http://127.0.0.1:8000/urlname
+
+http://127.0.0.1  --> IP address of Django Development server
+
+8000		  --> default portnumber of DDS
+
+how to stop the server:
+----------------------
+	we can stop the server through the command prompt by usng "ctrl+c"
+
+how to change the default port number?
+-------------------------------------
+	we can change the default portnumber by using following command,
+
+	python maange.py runserver portnumber
+
+ex:
+---
+	python maange.py runserver 9999
+
+
+
+
+

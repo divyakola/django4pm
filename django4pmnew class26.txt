@@ -1,0 +1,537 @@
+ex:
+---
+how to create hyper links in our webpages
+
+
+step1:
+-----
+to create a project
+
+	django-admin startproject proj29
+
+step2:
+-----
+goto project location,in that project locationwe can create an application.
+
+	cd proj29
+
+	python manage.py startapp app29
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	-----------
+INSTALLED_APPS = [
+    
+    'app29'
+]
+
+step4:
+-----
+to create a templates and to set the path for our templates in settings.py file
+
+	settings.py
+	------------
+TEMPLATES = [
+    {
+       
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+     },
+]
+
+step5:
+-----
+to create a static files and set the path for our static files in settings.py file
+
+	settings.py
+	-----------
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static'),
+    ]
+
+step6:
+------
+to create a model in models.py file of the application
+
+	models.py
+	---------
+from django.db import models
+
+class teacher(models.Model):
+    TeachersName=models.CharField(max_length=20)
+    Age=models.IntegerField()
+    Qualifiation=models.CharField(max_length=10)
+    DOB=models.DateField()
+    Gender=models.CharField(max_length=10)
+    Address=models.CharField(max_length=50)
+    PhoneNo=models.IntegerField()
+    Emailid=models.EmailField(max_length=30,primary_key=True)
+
+    class Meta:
+        db_table="teacher"
+
+step7:
+-----
+to check the errors in our model
+
+	python manage.py check
+
+step8:
+------
+to generate the sql query for our model class
+
+	python manage.py makemigrations
+
+step9:
+------
+to execute our sql query
+
+	python manage.py migrate
+
+step10:
+-------
+to create a django model forms in forms.py file of the application
+
+	forms.py
+	--------
+from django import forms
+from .models import teacher
+class TeachersForm(forms.ModelForm):
+    class Meta:
+        model=teacher
+        fields='__all__'
+
+
+step11:
+-------
+to create a view in views.py file of the application
+	
+	views.py
+	--------
+
+from django.shortcuts import render
+from .forms import TeachersForm
+from django.http import HttpResponse
+from .models import teacher
+
+def home(request):
+    return render(request,'school/home.html')
+def teacher(request):
+    if request.method=="POST":
+        form=TeachersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpRespone("successfully")
+    else:
+        form=TeachersForm()
+        return render(request,'school/teacher.html',{'form':form})
+
+
+	school/home.html
+	-----------------
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+</head>
+<body>
+<center>
+<h1 style="color:red"> School Mangement System</h1>
+<nav style="font-size:30px" class="nav">
+  <a  class="nav-link" active" href="teacher">Teachers</a>
+  <a  class="nav-link" href="login">Classes</a>
+</nav>
+</center>
+</body>
+</html>
+
+	school/teacher.html
+	--------------------
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+</head>
+<body>
+<center>
+<h1>Teachers Details Form</h1>
+<form action="" method="post">
+{% csrf_token %}
+
+<table cellspacing="10">
+<tr>
+<td>
+{{form}}
+</td>
+</tr>
+</table>
+</form>
+</center>
+</body>
+</html>
+
+	css/styles.css
+	---------------
+body{
+background-image:url("https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80");
+background-repeat:no-repeat;
+background-size:cover;
+}
+
+step12:
+------
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app29 import views
+
+urlpatterns = [    
+    path('admin/',admin.site.urls),
+    path('wel/',views.home),
+    path('wel/teacher/',views.teacher)
+  ]
+
+step13:
+-------
+to start the server
+
+	python manage.py runserver
+
+step14:
+-------
+to send the request
+
+	http://127.0.0.1:8000/wel
+
+
+ex:
+----
+to access the templates and static files from outside the base directory of the project?
+
+step1:
+------
+to create a project
+
+	django-admin startproject proj30
+
+step2:
+------
+goto project location,in that location we are creating an application.
+
+	cd proj30
+
+	python manage.py startapp app30
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	------------
+INSTALLED_APPS = [
+    
+    'app30'
+]
+
+
+step4:
+----
+to create a templates and set the path for our templates in settings.py file of the project.
+
+	settings.py
+	-----------
+TEMPLATES = [
+    {
+        
+        'DIRS': [os.path.join(BASE_DIR,
+                   'C:\\Users\\DELL\\Desktop\\templates')],
+      },
+]
+
+step5:
+-----
+to create a static files and set the path for our static files in settings.py file of the project
+
+	settings.py
+	-----------
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'C:\\Users\\DELL\\Desktop\\static'),
+    ]
+
+step6:
+-----
+to create a view in views.py file of the application
+
+	views.py
+	---------
+from django.shortcuts import render
+
+# Create your views here.
+def welcome(request):
+    return render(request,'input.html')
+
+	input.html
+	----------
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+<h1>welcome to Django Tutorial</h1>
+<p>Django is a python related high-level web application framework,it makes easier to build better web applications more quickly with lesscode</p>
+</body>
+</html>
+
+	base.css
+	--------
+body{
+   background-image:url("https://images.unsplash.com/photo-1594121816049-9b5713c9c1df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+   background-size:cover;
+   background-repeat:no-repeat;
+  }
+
+h1{
+  text-align:center;
+  color:blue;
+  font-size:30px;
+ }
+
+
+
+step7:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	---------
+from django.contrib import admin
+from django.urls import path
+from app30 import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('wel/',views.welcome)
+]
+
+step8:
+------
+to apply the migrate
+
+	python manage.py migrate
+
+step9:
+-----
+to run the server
+
+	python manage.py runserver
+
+step10:
+------
+to send the request to the server
+
+	http://127.0.0.1:8000/wel
+
+
+
+ex:
+---
+working with static csv files?
+
+step1:
+------
+to create a project
+
+	django-admin startproject proj31
+
+step2:
+------
+goto project location,in that location we are creating an application.
+
+	cd proj31
+
+	python manage.py startapp app31
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	------------
+INSTALLED_APPS = [
+    
+    'app31'
+]
+
+step4:
+-----
+to create a view in views.py file
+
+	views.py
+	--------
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+import csv  
+  
+def getfile(request):  
+    response = HttpResponse(content_type='text/csv')  
+    response['Content-Disposition'] = 'attachment; filename="file1.csv"'  
+    writer = csv.writer(response)  
+    writer.writerow(['1001', 'siva', 'krishna', 'B.Tech'])  
+    writer.writerow(['1002', 'bala', 'krishna', 'MCA'])  
+    return response  
+
+
+step5:
+-----
+to configure the url pattern for our view in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app31 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('mycsv/',views.getfile)
+]
+
+step6:
+-----
+to apply the migrate
+
+	python manage.py migrate
+
+step7:
+-----
+to run the server
+
+	python manage.py runserver
+
+step8:
+-----
+to send the request
+
+	http://127.0.0.1:8000/mycsv
+
+
+ex:
+-----
+working with dynamic csv?
+
+
+step1:
+------
+to create a project
+
+	django-admin startproject proj32
+
+step2:
+------
+goto project location,in that location we are creating an application.
+
+	cd proj32
+
+	python manage.py startapp app32
+
+step3:
+-----
+to install our application in settings.py file of the project
+
+	settings.py
+	------------
+INSTALLED_APPS = [
+    
+    'app32'
+]
+
+step4:
+-----
+to create a model in models.py file of the application
+
+	models.py
+	--------
+from django.db import models
+
+# Create your models here.
+class Employee(models.Model):
+    eid=models.IntegerField(primary_key=True)
+    ename=models.CharField(max_length=20)
+    econtact=models.IntegerField()
+
+step5:
+-----
+to check the errors in our model
+
+	python manage.py check
+
+step6:
+-----
+to generate sql queries for our model
+
+	python manage.py makemigrations
+
+step7:
+----
+to execute sql queries
+
+	python manage.py migrate
+
+step8:
+------
+to create a view ib views.py file of the application
+
+	views.py
+	--------
+	
+from django.shortcuts import render
+from django.http import HttpResponse
+from app32.models import Employee
+import csv  
+def getfile(request):  
+    response = HttpResponse(content_type='text/csv')  
+    response['Content-Disposition'] = 'attachment; filename="file2.csv"'  
+    employees = Employee.objects.all()  
+    writer = csv.writer(response)  
+    for employee in employees:  
+        writer.writerow([employee.eid,employee.ename,employee.econtact])  
+    return response  
+
+step9:
+-----
+to configure the url patterns for our views in urls.py file
+
+	urls.py
+	-------
+from django.contrib import admin
+from django.urls import path
+from app32 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('dcsv/',views.getfile)
+]
+
+step10:
+-----
+to start the server
+
+	python manage.py runserver
+
+step11:
+------
+to send request to the server
+
+	http://127.0.0.1:8000/dcsv

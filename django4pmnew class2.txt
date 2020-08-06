@@ -1,0 +1,207 @@
+ex:
+---
+create a web page with title tag?
+
+
+	ex1.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body>
+</body>
+</html>
+
+
+ex2:
+----
+create webpage with heading tags?
+
+	ex2.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>hello world</h2>
+<h3>hello world</h3>
+<h4>hello world</h4>
+<h5>hello world</h5>
+<h6>hello world</h6>
+</body>
+</html>
+
+ex3:
+---
+create a webpage with paragraph tags?
+	ex3.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body>
+<h2>
+<p>html is a markup language,it provides basic structure of the webpages,it is developed by "Berners Lee" in the year of 1991.</p>
+
+<p>python is a General purpose,high-level,interpreted,interactive,modular,dynamic typed,procedure oriented,object oriented and scripting programming language.</p>
+</h2>
+</body>
+</html>
+
+ex4:
+---
+create a webpage with linebreak tags?
+
+	ex4.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body>
+<h2>
+<p>html is a markup language,it provides basic structure of the webpages.<br>it is developed by "Berners Lee" in the year of 1991.</p>
+
+<p>python is a General purpose,high-level,interpreted,interactive,modular,</br>dynamic typed,procedure oriented,object oriented and scripting programming language.</p>
+</h2>
+</body>
+</html>
+
+ex5:
+----
+create a web page with horizontal ruler?
+
+	ex5.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body>
+<h1>welcome to HTML world</h1>
+<hr><hr>
+<h2>
+<p>html is a markup language,it provides basic structure of the webpages.it is developed by "Berners Lee" in the year of 1991.</p>
+<hr>
+
+<p>python is a General purpose,high-level,interpreted,interactive,modular,dynamic typed,procedure oriented,object oriented and scripting programming language.</p>
+</h2>
+</body>
+</html>
+
+ex6:
+---
+create a webpage with background color?
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body bgcolor="red">
+<h1>welcome to HTML world</h1>
+<hr><hr>
+<h2>
+<p>html is a markup language,it provides basic structure of the webpages.it is developed by "Berners Lee" in the year of 1991.</p>
+<hr>
+
+<p>python is a General purpose,high-level,interpreted,interactive,modular,dynamic typed,procedure oriented,object oriented and scripting programming language.</p>
+</h2>
+</body>
+</html>
+
+ex7:
+----
+create a webpage with text alignment?
+
+	ex7.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body bgcolor="#600734" align="center">
+<h1>welcome to HTML world</h1>
+<hr><hr>
+<h2>
+<p>html is a markup language,it provides basic structure of the webpages.it is developed by "Berners Lee" in the year of 1991.</p>
+<hr>
+
+<p>python is a General purpose,high-level,interpreted,interactive,modular,dynamic typed,procedure oriented,object oriented and scripting programming language.</p>
+</h2>
+</body>
+</html>
+
+ex8:
+----
+create web page with font tags?
+
+	ex8.html
+	--------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body bgcolor="green" align="center">
+<h1><font size="10" color="red" face="impact">welcome to HTML world</font></h1>
+<hr><hr>
+<h2>
+<p><font size="5" color="yellow" face="arial">html is a markup language,it provides basic structure of the webpages.it is developed by "Berners Lee" in the year of 1991.</font></p>
+<h2>
+</body>
+</html>
+
+ex9:
+---
+create a web page with text formates?
+
+	ex9.html
+	-------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body bgcolor="green">
+<h1><font size="10" color="red" face="impact"><center>welcome to HTML world</center></font></h1>
+<hr><hr>
+<h2><b>hello world</b></h2><br>
+<h2><i>hello world</i></h2></br>
+<h2><u>hello world</u></h2><br/>
+<h2><strike>hello world</strike><h2><br>
+<h2>a<sup>2</sup>-b<sup>2</sup></h2>
+<h2>H2<sub>o</sub></h2>
+</body>
+</html>
+
+ex10:
+----
+create a webpage by using different font sizes?
+
+	ex10.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome</title>
+</head>
+<body bgcolor="green">
+<h1><font size="10" color="red" face="impact"><center>welcome to HTML world</center></font></h1>
+<hr>
+<p><big>hello world</big></p>
+<p><small>hello world</small></p>
+<p><font size="5">hello world</font></p>
+</body>
+</html>
+

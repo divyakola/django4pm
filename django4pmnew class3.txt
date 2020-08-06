@@ -1,0 +1,293 @@
+ex11:
+---
+create a web page with scrolling the text?
+
+	ex11.html
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body>
+<h1><center>welcome to mysite</center></h1>
+<p>python is a General purpose,High Level,interpreted,interactive,modular,dynamic-typed,procedure-orienred,object-oriented and scripting programming Language</p>
+<hr>
+<marquee>Courses:Python,Django,Flask,RESTapi</marquee>
+<hr>
+</body>
+</html>
+
+ex12:
+----
+	ex12.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body>
+<h1><center>welcome to mysite</center></h1>
+<p>python is a General purpose,High Level,interpreted,interactive,modular,dynamic-typed,procedure-orienred,object-oriented and scripting programming Language</p>
+<hr>
+<marquee direction="right">Courses:Python,Django,Flask,RESTapi</marquee>
+<hr>
+</body>
+</html>
+
+ex13:
+-----
+	ex13.html
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body>
+<h1><center>welcome to mysite</center></h1>
+<p>python is a General purpose,High Level,interpreted,interactive,modular,dynamic-typed,procedure-orienred,object-oriented and scripting programming Language</p>
+<hr>
+<marquee direction="up">Courses:Python,Django,Flask,RESTapi</marquee>
+<hr>
+</body>
+</html>
+
+ex14:
+-----
+	ex14.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body>
+<h1><center>welcome to mysite</center></h1>
+<p>python is a General purpose,High Level,interpreted,interactive,modular,dynamic-typed,procedure-orienred,object-oriented and scripting programming Language</p>
+<hr>
+<marquee direction="down">Courses:Python,Django,Flask,RESTapi</marquee>
+<hr>
+</body>
+</html>
+
+ex15:
+-----
+	ex15.html
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body>
+<h1><center>welcome to mysite</center></h1>
+<p>python is a General purpose,High Level,interpreted,interactive,modular,dynamic-typed,procedure-orienred,object-oriented and scripting programming Language</p>
+<hr>
+<marquee width="50%">
+<font face="impact" size="10" color="red">Courses:Python,Django,Flask,RESTapi</font>
+</marquee>
+<hr>
+</body>
+</html>
+
+ex16:
+-----
+	ex16.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body>
+<h1><center>welcome to mysite</center></h1>
+<p>python is a General purpose,High Level,interpreted,interactive,modular,dynamic-typed,procedure-orienred,object-oriented and scripting programming Language</p>
+<hr>
+<marquee>
+<font face="impact" size="10" color="red">
+Courses:Python,Django,Flask,RESTapi</font>
+</marquee>
+<hr>
+<hr>
+<marquee direction="right" scrollamount="20" bgcolor="yellow">
+<font face="impact" size="10" color="blue">
+Courses:Python,Django,Flask,RESTapi</font>
+</marquee>
+<hr>
+</body>
+</html>
+
+ex17:
+-----
+create a webpage,to display the item in unordered lists?
+
+	ex17.html
+	----------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body bgcolor="powderblue">
+<h1><center>welcome to my Restaurent</center></h1>
+<h2><font color="blue" face="arial">Type's of Tea's</font></h2>
+<hr>
+<font color="red" face="impact" size="4">
+<ul>
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ul>
+</font>
+<hr>
+<font color="green" face="calibri" size="4">
+<ul type="circle">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ul>
+</font>
+<hr>
+<font color="green" face="mistral" size="4">
+<ul type="square">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ul>
+</font>
+<hr>
+<font color="orange" face="elephant" size="4">
+<ul type="disc">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ul>
+</font>
+</body>
+</html>
+
+ex18:
+-----
+	ex18.html
+	---------
+<!DOCTYPE html>
+<html>
+<head>
+<title>webpage</title>
+<body bgcolor="powderblue">
+<h1><center>welcome to my Restaurent</center></h1>
+<h2><font color="blue" face="arial">Type's of Tea's</font></h2>
+<hr>
+<font color="red" face="impact" size="4">
+<ul>
+<li>Tea</li>
+<font color="green" face="mistral" size="10">
+<li>Ginger Tea</li>
+<li>Lemon Tea</li></font>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ul>
+</font>
+</body>
+</html>
+
+ex19:
+----
+create a web page to display the items in ordered list?
+
+	ex19.html
+	----------
+<!DOCTYPE html>
+<html>
+<title>webpage</title>
+<body bgcolor="powderblue">
+<h1><center>welcome to my Restaurent</center></h1>
+<h2><font color="blue" face="arial">Type's of Tea's</font></h2>
+<hr>
+<font color="red" face="impact" size="4">
+<ol>
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+<hr>
+<font color="blue" face="mistral" size="4">
+<ol type="A">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+<hr>
+<font color="orange" face="arial" size="4">
+<ol type="a">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+<hr>
+<font color="green" face="elephant" size="4">
+<ol type="i">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+<hr>
+<font color="blue" face="arial narrow" size="4">
+<ol type="I">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+</body>
+</html>
+
+ex20:
+----
+	ex20.html
+	---------
+<!DOCTYPE html>
+<html>
+<title>webpage</title>
+<body bgcolor="powderblue">
+<h1><center>welcome to my Restaurent</center></h1>
+<h2><font color="blue" face="arial">Type's of Tea's</font></h2>
+<hr>
+<font color="red" face="impact" size="4">
+<ol>
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+<hr>
+<font color="blue" face="mistral" size="4">
+<ol start="5">
+<li>Tea</li>
+<li>Ginger Tea</li>
+<li>Lemon Tea</li>
+<li>Special Tea</li>
+<li>Badam Tea</li>
+</ol>
+</font>
+</body>
+</html>
